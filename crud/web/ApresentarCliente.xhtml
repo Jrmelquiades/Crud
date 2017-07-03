@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Apresentar Cliente</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:dataTable id="table"
+                         value="#{controladorCliente.recuperarTodos()}"
+                         var="cliente" 
+                         selectionMode="single"
+                         selection="#{controladorCliente.selected}"
+                         rowKey="#{cliente.id}">
+                <f:facet name="header">
+                    <h:outputText value="Apresentar Clientes"/>
+                </f:facet>
+                <p:column headerText="id">
+                    <h:outputText value="#{cliente.id}"/>
+                </p:column>
+                <p:column headerText="Nome">
+                    <h:outputText value="#{cliente.nome}"/>
+                </p:column>
+                <p:column headerText="E-mail">
+                    <h:outputText value="#{cliente.email}"/>
+                </p:column>
+                <p:column headerText="Celular">
+                    <h:outputText value="#{cliente.celular}"/>
+                </p:column>
+                <p:column headerText="Data de Nascimento">
+                    <h:outputText value="#{cliente.nascimento}"/>
+                </p:column>
+                <p:column headerText="CEP">
+                    <h:outputText value="#{cliente.cep}"/>
+                </p:column>
+                <p:column headerText="Endereço">
+                    <h:outputText value="#{cliente.endereco}"/>
+                </p:column>
+                <p:column headerText="País">
+                    <h:outputText value="#{cliente.pais}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton value="Adicionar Cliente" action="CadastrarCliente.xhtml"/>
+                    <p:commandButton value="Alterar" action="#{controladorCliente.alterar()}"/>
+                    <p:commandButton value="Atualizar Página" oncomplete=":FromCliente:table"/>
+                    <p:commandButton value="Remover" oncomplete=":FromCliente:table" action="#{controladorCliente.remover()}"/>
+                    </f:facet>
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
